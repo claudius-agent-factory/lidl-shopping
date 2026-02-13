@@ -1,17 +1,20 @@
 ---
 name: lidl-shopping
-description: Sortiert Einkaufslisten nach dem typischen Ladenaufbau eines Lidl-Markts in Deutschland. Verwende diesen Skill, wenn der Nutzer eine Einkaufsliste "für Lidl sortieren" möchte, "in der richtigen Reihenfolge" braucht, oder eine "optimierte Einkaufsliste" für Lidl anfordert.
+description: Erstellt aus Rezepten sortierte Einkaufslisten für Lidl in Deutschland. Verwende diesen Skill wenn: (1) Nutzer eine Rezept-URL schickt und eine Einkaufsliste braucht, (2) eine bestehende Liste "für Lidl sortieren" möchte, (3) "optimierte Einkaufsliste" anfordert. Extrahiert automatisch Zutaten aus Rezept-Webseiten und sortiert nach Lidl-Ladenaufbau.
 ---
 
 # Lidl Einkaufslisten-Sortierung
 
-Sortiert Einkaufslisten nach dem typischen Weg durch einen Lidl-Markt (Eingang → Kasse, gegen den Uhrzeigersinn).
+Erstellt aus Rezepten oder Zutatenlisten sortierte Einkaufslisten für Lidl.
 
 ## Workflow
 
-1. **Zutaten analysieren**: Erkenne die Kategorie jeder Zutat
-2. **Sortieren**: Ordnung nach Ladenaufbau (siehe Referenz)
-3. **Ausgabe**: Formatierte Liste mit Checkboxen
+1. **Rezept erfassen**: 
+   - Bei URL: web_fetch nutzen, Zutaten aus Seite extrahieren
+   - Bei Zutatenliste: Direkt verwenden
+2. **Zutaten analysieren**: Erkenne die Kategorie jeder Zutat
+3. **Sortieren**: Ordnung nach Lidl-Ladenaufbau (siehe Referenz)
+4. **Ausgabe**: Formatierte Liste mit Checkboxen und Mengenangaben
 
 ## Sortierreihenfolge
 
