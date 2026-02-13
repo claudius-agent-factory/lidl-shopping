@@ -1,6 +1,6 @@
 ---
 name: lidl-shopping
-description: Erstellt aus Rezepten sortierte Einkaufslisten für Lidl in Deutschland. Verwende diesen Skill wenn: (1) Nutzer eine Rezept-URL schickt und eine Einkaufsliste braucht, (2) eine bestehende Liste "für Lidl sortieren" möchte, (3) "optimierte Einkaufsliste" anfordert. Extrahiert automatisch Zutaten aus Rezept-Webseiten und sortiert nach Lidl-Ladenaufbau.
+description: Erstellt aus Rezepten sortierte Einkaufslisten für Lidl in Deutschland. Verwende diesen Skill wenn: (1) Nutzer eine Rezept-URL schickt und eine Einkaufsliste braucht, (2) eine bestehende Liste "für Lidl sortieren" möchte, (3) "optimierte Einkaufsliste" anfordert. Extrahiert automatisch Zutaten aus Rezept-Webseiten und sortiert nach Lidl-Ladenaufbau. Optional: Auf Bring-Liste pushen.
 ---
 
 # Lidl Einkaufslisten-Sortierung
@@ -58,8 +58,32 @@ Siehe [references/lidl-store-layout.md](references/lidl-store-layout.md) für di
 📋 X Artikel insgesamt
 ```
 
+## Bring-Integration (Optional)
+
+Nach dem Erstellen der Einkaufsliste kann diese auf die Bring-App gepusht werden.
+
+**Default-Liste:** `Pooch` (UUID: `24b0f8bb-05d1-4ccb-8f68-b52a5bf33678`)
+
+### Befehle
+
+```bash
+# Artikel hinzufügen
+node /root/clawd/skills/bring-shopping/scripts/bring_cli.mjs add --item "Artikel" --spec "Menge" --list "Pooch"
+
+# Liste anzeigen
+node /root/clawd/skills/bring-shopping/scripts/bring_cli.mjs items --list "Pooch"
+```
+
+### Workflow mit Bring
+
+1. Einkaufsliste sortiert erstellen (siehe oben)
+2. Nutzer fragen: "Auf Bring-Liste hinzufügen?"
+3. Bei Ja: Alle Artikel einzeln via CLI hinzufügen
+4. Bestätigung geben
+
 ## Hinweise
 
 - Unbekannte Produkte → in Kategorie "Sonstiges" am Ende
 - Mengenangaben beibehalten
 - Checkboxen `[ ]` für Abhaken im Laden
+- Bring-Integration ist optional – nur wenn Nutzer explizit zustimmt
